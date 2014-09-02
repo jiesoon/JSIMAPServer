@@ -11,6 +11,8 @@ import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.jiesoon.message.store.MemoryStore;
+
 public class IMAPServer {
     private final static int PORT = 143;
     private final static String HOST = "localhost";
@@ -18,6 +20,7 @@ public class IMAPServer {
     private ServerSocket mServerSocket;
     private int mState = State.NOT_AUTHENTICATED;
     private User mUser;
+    private MemoryStore mStore;
 
     public IMAPServer() {
         mLogger.setLevel(Level.ALL);
@@ -33,6 +36,11 @@ public class IMAPServer {
         mUser = new User();
         mUser.mName = "jiesoon";
         mUser.mPassword = "www.jiesoon.com";
+    }
+    
+    private void initMessageStore(){
+        mStore = new MemoryStore();
+        mStore.init();
     }
 
     private void greeting(Socket socket) {

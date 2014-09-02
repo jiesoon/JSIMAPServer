@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -204,6 +205,8 @@ public class IMAPServer {
                                     }
                                     System.out.println("READ: " + line);
                                 }
+                            } catch (SocketException e){
+                                e.printStackTrace();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

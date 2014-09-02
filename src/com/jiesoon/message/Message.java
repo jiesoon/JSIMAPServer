@@ -10,7 +10,6 @@ public class Message {
     public final int MAX_LINE_LEN = 998;
     public final int LINE_LEN = 78;
 
-    private int mSize;
     // origination date
     private String mDate;
 
@@ -35,7 +34,7 @@ public class Message {
     private String mComments;
     private String mKeywords;
 
-    // resend fields
+    // Resend fields
     private String mResendFrom;
     private String mResendDate;
     private String mResendSender;
@@ -46,179 +45,202 @@ public class Message {
 
     private String mBody;
 
-    public int getmSize() {
+    public int getSize() {
         return mSize;
     }
 
-    public void setmSize(int mSize) {
+    public void setSize(int mSize) {
         this.mSize = mSize;
     }
 
-    public String getmDate() {
+    public String getDate() {
         return mDate;
     }
 
-    public void setmDate(String mDate) {
+    public void setDate(String mDate) {
         this.mDate = mDate;
     }
 
-    public String getmFrom() {
+    public String getFrom() {
         return mFrom;
     }
 
-    public void setmFrom(String mFrom) {
+    public void setFrom(String mFrom) {
         this.mFrom = mFrom;
     }
 
-    public String getmSender() {
+    public String getSender() {
         return mSender;
     }
 
-    public void setmSender(String mSender) {
+    public void setSender(String mSender) {
         this.mSender = mSender;
     }
 
-    public String getmReplyTo() {
+    public String getReplyTo() {
         return mReplyTo;
     }
 
-    public void setmReplyTo(String mReplyTo) {
+    public void setReplyTo(String mReplyTo) {
         this.mReplyTo = mReplyTo;
     }
 
-    public String getmTo() {
+    public String getTo() {
         return mTo;
     }
 
-    public void setmTo(String mTo) {
+    public void setTo(String mTo) {
         this.mTo = mTo;
     }
 
-    public String getmCc() {
+    public String getCc() {
         return mCc;
     }
 
-    public void setmCc(String mCc) {
+    public void setCc(String mCc) {
         this.mCc = mCc;
     }
 
-    public String getmBcc() {
+    public String getBcc() {
         return mBcc;
     }
 
-    public void setmBcc(String mBcc) {
+    public void setBcc(String mBcc) {
         this.mBcc = mBcc;
     }
 
-    public String getmMessageId() {
+    public String getMessageId() {
         return mMessageId;
     }
 
-    public void setmMessageId(String mMessageId) {
+    public void setMessageId(String mMessageId) {
         this.mMessageId = mMessageId;
     }
 
-    public String getmInReplyTo() {
+    public String getInReplyTo() {
         return mInReplyTo;
     }
 
-    public void setmInReplyTo(String mInReplyTo) {
+    public void setInReplyTo(String mInReplyTo) {
         this.mInReplyTo = mInReplyTo;
     }
 
-    public String getmReferences() {
+    public String getReferences() {
         return mReferences;
     }
 
-    public void setmReferences(String mReferences) {
+    public void setReferences(String mReferences) {
         this.mReferences = mReferences;
     }
 
-    public String getmSubject() {
+    public String getSubject() {
         return mSubject;
     }
 
-    public void setmSubject(String mSubject) {
+    public void setSubject(String mSubject) {
         this.mSubject = mSubject;
     }
 
-    public String getmComments() {
+    public String getComments() {
         return mComments;
     }
 
-    public void setmComments(String mComments) {
+    public void setComments(String mComments) {
         this.mComments = mComments;
     }
 
-    public String getmKeywords() {
+    public String getKeywords() {
         return mKeywords;
     }
 
-    public void setmKeywords(String mKeywords) {
+    public void setKeywords(String mKeywords) {
         this.mKeywords = mKeywords;
     }
 
-    public String getmResendFrom() {
+    public String getResendFrom() {
         return mResendFrom;
     }
 
-    public void setmResendFrom(String mResendFrom) {
+    public void setResendFrom(String mResendFrom) {
         this.mResendFrom = mResendFrom;
     }
 
-    public String getmResendDate() {
+    public String getResendDate() {
         return mResendDate;
     }
 
-    public void setmResendDate(String mResendDate) {
+    public void setResendDate(String mResendDate) {
         this.mResendDate = mResendDate;
     }
 
-    public String getmResendSender() {
+    public String getResendSender() {
         return mResendSender;
     }
 
-    public void setmResendSender(String mResendSender) {
+    public void setResendSender(String mResendSender) {
         this.mResendSender = mResendSender;
     }
 
-    public String getmResendTo() {
+    public String getResendTo() {
         return mResendTo;
     }
 
-    public void setmResendTo(String mResendTo) {
+    public void setResendTo(String mResendTo) {
         this.mResendTo = mResendTo;
     }
 
-    public String getmResendCc() {
+    public String getResendCc() {
         return mResendCc;
     }
 
-    public void setmResendCc(String mResendCc) {
+    public void setResendCc(String mResendCc) {
         this.mResendCc = mResendCc;
     }
 
-    public String getmResendBcc() {
+    public String getResendBcc() {
         return mResendBcc;
     }
 
-    public void setmResendBcc(String mResendBcc) {
+    public void setResendBcc(String mResendBcc) {
         this.mResendBcc = mResendBcc;
     }
 
-    public String getmResendMessageId() {
+    public String getResendMessageId() {
         return mResendMessageId;
     }
 
-    public void setmResendMessageId(String mResendMessageId) {
+    public void setResendMessageId(String mResendMessageId) {
         this.mResendMessageId = mResendMessageId;
     }
 
-    public String getmBody() {
+    public String getBody() {
         return mBody;
     }
 
-    public void setmBody(String mBody) {
+    public void setBody(String mBody) {
         this.mBody = mBody;
     }
+    
+    //Flags Message Attribute
+    private int mFlags;
+    public final int FLAGS = 1;
+    public final int SEEN = FLAGS << 0;
+    public final int ANSWERED = FLAGS << 1;
+    public final int FLAGGED = FLAGS << 2;
+    public final int DELETED = FLAGS << 3;
+    public final int DRAFT = FLAGS << 4;
+    public final int RECENT = FLAGS << 5;
+    
+    //Internal Date Message Attribute
+    private long mInternalDate;
+    
+    
+    //[RFC-2822] Size Message Attribute
+    private int mSize;
+    
+    //Envelope Structure Message Attribute
+    private Envelop mEnvelop;
+    
+    //Body Structure Message Attribute
+    private BodyStructure mBodyStructure;
 }

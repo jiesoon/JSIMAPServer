@@ -159,11 +159,272 @@ public class IMAPServer {
 
         }
     }
+    
+    private void handleCapability(Socket socket, String request) {
+        if (socket != null) {
+            try {
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
+                String line = request;
+                if (line != null) {
+                    String[] fields = line.split(" ");
+                    if (fields != null && fields.length == 2) {
+                        String tag = fields[0];
+                        String command = fields[1];
+
+                        String resp = "";
+                        if (!checkTag(tag)) {
+                            // BAD
+                            resp = tag + " " + "BAD " + "command unknown or arguments invalid";
+                        }
+
+                        if (!checkCapability(command)) {
+                            // BAD
+                        }
+
+                        resp = "* CAPABILITY IMAP4rev1 STARTTLS AUTH=GSSAPI LOGINDISABLED";
+                        writer.write(resp);
+                        writer.newLine();
+                        writer.flush();
+
+                        resp = tag + " OK CAPABILITY completed";
+                        writer.write(resp);
+                        writer.newLine();
+                        writer.flush();
+
+                    }
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void handleNoop(Socket socket, String request) {
+        if (socket != null) {
+            try {
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+                String line = request;
+                if (line != null) {
+                    String[] fields = line.split(" ");
+                    if (fields != null && fields.length == 2) {
+                        String tag = fields[0];
+                        String command = fields[1];
+
+                        String resp = "";
+                        if (!checkTag(tag)) {
+                            // BAD
+                            resp = tag + " " + "BAD " + "command unknown or arguments invalid";
+                        }
+
+                        if (!checkNoop(command)) {
+                            // BAD
+                        }
+
+                        // If no new status
+                        resp = tag + " OK NOOP completed";
+                        writer.write(resp);
+                        writer.newLine();
+                        writer.flush();
+
+                        // If a new updated status.
+                        writer.write("* 22 EXPUNGE");
+                        writer.newLine();
+                        writer.write("* 23 EXISTS");
+                        writer.newLine();
+                        writer.write("* 3 RECENT");
+                        writer.newLine();
+                        writer.write("* 14 FETCH (FLAGS (\\Seen \\Delete))");
+                        writer.newLine();
+                        resp = tag + " OK NOOP completed";
+                        writer.write(resp);
+                        writer.newLine();
+                        writer.flush();
+
+                    }
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void handleStartTls(Socket socket, String request) {
+        // TODO add TLS supported feature.
+        // for test, we only implement plain authentication
+    }
+
+    private void handleAuthenticate(Socket socket, String request) {
+        // TODO add Authentication feature
+        // for test, we only implement plain authetication.
+    }
+
+    private void handleSelect(Socket socket, String request) {
+        if (socket != null) {
+            try {
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+                String line = request;
+                if (line != null) {
+                    String[] fields = line.split(" ");
+                    if (fields != null && fields.length == 3) {
+                        String tag = fields[0];
+                        String command = fields[1];
+
+                        String resp = "";
+                        if (!checkTag(tag)) {
+                            // BAD
+                            resp = tag + " " + "BAD " + "command unknown or arguments invalid";
+                        }
+
+                        if (!checkSelect(command)) {
+                            // BAD
+                        }
+
+                        writer.write("* 172 EXISTS");
+                        writer.newLine();
+                        writer.write("* 1 RECENT");
+                        writer.newLine();
+                        writer.write("* OK [UNSEEN 12] Message 12 is first unseen");
+                        writer.newLine();
+                        writer.write("* OK [UIDVALIDITY 3857529045] UIDs valid");
+                        writer.newLine();
+                        writer.write("* FLAGS (\\Answered \\Flagged \\Deleted \\Seen \\Draft)");
+                        writer.newLine();
+                        writer.write("* OK [PERMANENTFLAGS (\\Deleted \\Seen \\*)] Limited");
+                        writer.newLine();
+                        resp = tag + " OK [READ-WRITE] SELECT completed";
+                        writer.write(resp);
+                        writer.newLine();
+                        writer.flush();
+
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void handleExamine(Socket socket, String request) {
+        if (socket != null) {
+            try {
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+                String line = request;
+                if (line != null) {
+                    String[] fields = line.split(" ");
+                    if (fields != null && fields.length == 3) {
+                        String tag = fields[0];
+                        String command = fields[1];
+
+                        String resp = "";
+                        if (!checkTag(tag)) {
+                            // BAD
+                            resp = tag + " " + "BAD " + "command unknown or arguments invalid";
+                        }
+
+                        if (!checkSelect(command)) {
+                            // BAD
+                        }
+
+                        // TODO No change to FLAGS, No change of \Recent flag
+                        writer.write("* 172 EXISTS");
+                        writer.newLine();
+                        writer.write("* 1 RECENT");
+                        writer.newLine();
+                        writer.write("* OK [UNSEEN 12] Message 12 is first unseen");
+                        writer.newLine();
+                        writer.write("* OK [UIDVALIDITY 3857529045] UIDs valid");
+                        writer.newLine();
+                        writer.write("* FLAGS (\\Answered \\Flagged \\Deleted \\Seen \\Draft)");
+                        writer.newLine();
+                        writer.write("* OK [PERMANENTFLAGS (\\Deleted \\Seen \\*)] Limited");
+                        writer.newLine();
+                        resp = tag + " OK [READ-ONLY] SELECT completed";
+                        writer.write(resp);
+                        writer.newLine();
+                        writer.flush();
+
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void handleCreate(Socket socket, String request) {
+        if (socket != null) {
+            try {
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+                String line = request;
+                if (line != null) {
+                    String[] fields = line.split(" ");
+                    if (fields != null && fields.length == 3) {
+                        String tag = fields[0];
+                        String command = fields[1];
+                        String mailbox = fields[2];
+
+                        String resp = "";
+                        if (!checkTag(tag)) {
+                            // BAD
+                            resp = tag + " " + "BAD " + "command unknown or arguments invalid";
+                        }
+
+                        if (!checkCreate(command)) {
+                            // BAD
+                        }
+
+                        if (mailbox.equals("INBOX")) {
+                            // TODO
+                        }
+
+                        // hierarchy separator
+                        if (mailbox.contains("/")) {
+                            // TODO
+                        }
+
+                        // TODO Create a mailbox
+
+                        resp = tag + " OK CREATE completed";
+                        writer.write(resp);
+                        writer.newLine();
+                        writer.flush();
+
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
     private boolean checkLogin(String command) {
         return "LOGIN".equalsIgnoreCase(command);
     }
 
+    private boolean checkCapability(String command){
+       return "CAPABILITY".equalsIgnoreCase(command);
+    }
+    
+    private boolean checkNoop(String command){
+        return "NOOP".equalsIgnoreCase(command);
+    }
+    
+    private boolean checkSelect(String command){
+        return "SELECT".equalsIgnoreCase(command);
+    }
+    
+    private boolean checkCreate(String command){
+        return "CREATE".equalsIgnoreCase(command);
+    }
     /**
      * Check if tag's validity
      * 
